@@ -12,3 +12,11 @@ var Tracer = otel.Tracer("fiber-server")
 func Start(ctx context.Context, spanName string, opts ...trace.SpanStartOption) (context.Context, trace.Span) {
 	return Tracer.Start(ctx, spanName, opts...)
 }
+
+func Trace(ctx *context.Context, spanName string, opts ...trace.SpanStartOption) func() {
+	c, span := Tracer.Start(*ctx, spanName, opts...)
+	*ctx = c
+	return func() {
+		span.End()
+	}
+}

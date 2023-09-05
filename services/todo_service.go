@@ -21,15 +21,13 @@ func NewTodoService(r *repositories.TodoRepository) *TodoService {
 }
 
 func (s *TodoService) GetTodos(ctx context.Context) ([]models.Todo, error) {
-	ctx, span := tracer.Start(ctx, "TodoService-GetTodos")
-	defer span.End()
+	defer tracer.Trace(&ctx, "TodoService-GetTodos")()
 
 	return s.todoRepository.GetTodos(ctx)
 }
 
 func (s *TodoService) GetTodoById(ctx context.Context, id int) (models.Todo, error) {
-	ctx, span := tracer.Start(ctx, "TodoService-GetTodoById", trace.WithAttributes(attribute.Int("id", id)))
-	defer span.End()
+	defer tracer.Trace(&ctx, "TodoService-GetTodoById", trace.WithAttributes(attribute.Int("id", id)))()
 
 	return s.todoRepository.GetTodoById(ctx, id)
 }
