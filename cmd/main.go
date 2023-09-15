@@ -4,9 +4,9 @@ import (
 	"context"
 	"log"
 
-	"github.com/anilsenay/go-opentelemetry-example/handlers"
-	"github.com/anilsenay/go-opentelemetry-example/repositories"
-	"github.com/anilsenay/go-opentelemetry-example/services"
+	"github.com/anilsenay/go-opentelemetry-example/internal/handlers"
+	"github.com/anilsenay/go-opentelemetry-example/internal/repositories"
+	"github.com/anilsenay/go-opentelemetry-example/internal/services"
 	"github.com/gofiber/contrib/otelfiber/v2"
 	"github.com/gofiber/fiber/v2"
 	"go.opentelemetry.io/otel"

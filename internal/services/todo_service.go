@@ -3,9 +3,9 @@ package services
 import (
 	"context"
 
-	"github.com/anilsenay/go-opentelemetry-example/models"
-	"github.com/anilsenay/go-opentelemetry-example/repositories"
-	"github.com/anilsenay/go-opentelemetry-example/tracer"
+	"github.com/anilsenay/go-opentelemetry-example/internal/models"
+	"github.com/anilsenay/go-opentelemetry-example/internal/repositories"
+	"github.com/anilsenay/go-opentelemetry-example/pkg/tracer"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/trace"
 )
