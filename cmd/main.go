@@ -7,11 +7,15 @@ import (
 	"github.com/anilsenay/go-opentelemetry-example/internal/handlers"
 	"github.com/anilsenay/go-opentelemetry-example/internal/repositories"
 	"github.com/anilsenay/go-opentelemetry-example/internal/services"
+	"github.com/gofiber/adaptor/v2"
 	"github.com/gofiber/contrib/otelfiber/v2"
 	"github.com/gofiber/fiber/v2"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/exporters/jaeger"
+	"go.opentelemetry.io/otel/exporters/prometheus"
 	"go.opentelemetry.io/otel/propagation"
+	"go.opentelemetry.io/otel/sdk/metric"
 	"go.opentelemetry.io/otel/sdk/resource"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 	semconv "go.opentelemetry.io/otel/semconv/v1.4.0"
@@ -39,6 +43,18 @@ func initTracer() *sdktrace.TracerProvider {
 	return tp
 }
 
+func initMetrics() (*metric.MeterProvider, error) {
+	exporter, err := prometheus.New()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	provider := metric.NewMeterProvider(metric.WithReader(exporter))
+	otel.SetMeterProvider(provider)
+
+	return provider, nil
+}
+
 func initDb() *gorm.DB {
 	db, err := gorm.Open(postgres.Open("host=localhost user=postgres password=postgres dbname=postgres port=5432 sslmode=disable"))
 	if err != nil {
@@ -59,6 +75,11 @@ func main() {
 		}
 	}()
 
+	_, err := initMetrics()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	// dependency injection
 	database := initDb()
 	todoRepository := repositories.NewTodoRepository(database)
@@ -70,6 +91,8 @@ func main() {
 	app.Use(otelfiber.Middleware())
 
 	todoHandler.SetRoutes(app)
+
+	app.Get("/metrics", adaptor.HTTPHandler(promhttp.Handler()))
 
 	app.Listen(":3000")
 }

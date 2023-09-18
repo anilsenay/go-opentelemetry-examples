@@ -2,8 +2,10 @@ package handlers
 
 import (
 	"strconv"
+	"time"
 
 	"github.com/anilsenay/go-opentelemetry-example/internal/services"
+	"github.com/anilsenay/go-opentelemetry-example/pkg/metrics"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -18,6 +20,7 @@ func NewTodoHandler(s *services.TodoService) *TodoHandler {
 }
 
 func (h *TodoHandler) handleGetTodos(c *fiber.Ctx) error {
+	metrics.Record(c.UserContext(), "TodoHandler-handleGetTodos")(time.Now())
 	todos, err := h.todoService.GetTodos(c.UserContext())
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(err)
