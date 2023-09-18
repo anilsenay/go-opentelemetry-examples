@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
+	"crypto/tls"
 	"log"
+	"strings"
 
 	"github.com/anilsenay/go-opentelemetry-example/internal/handlers"
 	"github.com/anilsenay/go-opentelemetry-example/internal/repositories"
@@ -10,21 +12,41 @@ import (
 	"github.com/gofiber/contrib/otelfiber/v2"
 	"github.com/gofiber/fiber/v2"
 	"go.opentelemetry.io/otel"
-	"go.opentelemetry.io/otel/exporters/jaeger"
+	"go.opentelemetry.io/otel/exporters/otlp/otlptrace"
+	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
 	"go.opentelemetry.io/otel/propagation"
 	"go.opentelemetry.io/otel/sdk/resource"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 	semconv "go.opentelemetry.io/otel/semconv/v1.4.0"
+	"google.golang.org/grpc/credentials"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/plugin/opentelemetry/tracing"
 )
 
+const OTEL_EXPORTER_OTLP_ENDPOINT = "https://bcab868a8913431690102bb3d3a20696.apm.europe-west3.gcp.cloud.es.io:443"
+const OTEL_EXPORTER_OTLP_HEADERS = "NhrcUcCMEzRGvcNGv8"
+
 func initTracer() *sdktrace.TracerProvider {
-	exporter, err := jaeger.New(jaeger.WithCollectorEndpoint())
+	collectorURL := strings.Replace(OTEL_EXPORTER_OTLP_ENDPOINT, "https://", "", 1)
+	secretToken := OTEL_EXPORTER_OTLP_HEADERS
+
+	secureOption := otlptracegrpc.WithInsecure()
+	exporter, err := otlptrace.New(
+		context.Background(),
+		otlptracegrpc.NewClient(
+			secureOption,
+			otlptracegrpc.WithEndpoint(collectorURL),
+			otlptracegrpc.WithHeaders(map[string]string{
+				"Authorization": "Bearer " + secretToken,
+			}),
+			otlptracegrpc.WithTLSCredentials(credentials.NewTLS(&tls.Config{})),
+		),
+	)
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	tp := sdktrace.NewTracerProvider(
 		sdktrace.WithSampler(sdktrace.AlwaysSample()),
 		sdktrace.WithBatcher(exporter),
