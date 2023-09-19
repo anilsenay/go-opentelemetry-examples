@@ -3,7 +3,7 @@ package repositories
 import (
 	"context"
 
-	"github.com/anilsenay/go-opentelemetry-example/internal/models"
+	"github.com/anilsenay/go-opentelemetry-example-3/internal/models"
 	"gorm.io/gorm"
 )
 

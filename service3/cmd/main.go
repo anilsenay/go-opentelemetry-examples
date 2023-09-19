@@ -4,9 +4,9 @@ import (
 	"context"
 	"log"
 
-	"github.com/anilsenay/go-opentelemetry-example/internal/handlers"
-	"github.com/anilsenay/go-opentelemetry-example/internal/repositories"
-	"github.com/anilsenay/go-opentelemetry-example/internal/services"
+	"github.com/anilsenay/go-opentelemetry-example-3/internal/handlers"
+	"github.com/anilsenay/go-opentelemetry-example-3/internal/repositories"
+	"github.com/anilsenay/go-opentelemetry-example-3/internal/services"
 	"github.com/gofiber/contrib/otelfiber/v2"
 	"github.com/gofiber/fiber/v2"
 	"go.opentelemetry.io/otel"
@@ -31,7 +31,7 @@ func initTracer() *sdktrace.TracerProvider {
 		sdktrace.WithResource(
 			resource.NewWithAttributes(
 				semconv.SchemaURL,
-				semconv.ServiceNameKey.String("todo-app"),
+				semconv.ServiceNameKey.String("todo-app-3"),
 			)),
 	)
 	otel.SetTracerProvider(tp)
@@ -71,5 +71,5 @@ func main() {
 
 	todoHandler.SetRoutes(app)
 
-	app.Listen(":3000")
+	app.Listen(":3003")
 }

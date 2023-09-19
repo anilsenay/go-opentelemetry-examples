@@ -3,7 +3,7 @@ package handlers
 import (
 	"strconv"
 
-	"github.com/anilsenay/go-opentelemetry-example/internal/services"
+	"github.com/anilsenay/go-opentelemetry-example-1/internal/services"
 	"github.com/gofiber/fiber/v2"
 )
 

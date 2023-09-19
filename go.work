@@ -1,0 +1,7 @@
+go 1.21.0
+
+use (
+	./service1
+	./service2
+	./service3
+)

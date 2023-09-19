@@ -7,7 +7,7 @@ import (
 	"go.opentelemetry.io/otel/trace"
 )
 
-var Tracer = otel.Tracer("fiber-server")
+var Tracer = otel.Tracer("fiber-server-3")
 
 func Start(ctx context.Context, spanName string, opts ...trace.SpanStartOption) (context.Context, trace.Span) {
 	return Tracer.Start(ctx, spanName, opts...)
