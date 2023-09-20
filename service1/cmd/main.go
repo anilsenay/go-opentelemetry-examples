@@ -9,6 +9,7 @@ import (
 	"github.com/gofiber/contrib/otelfiber/v2"
 	"github.com/gofiber/fiber/v2"
 	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/exporters/jaeger"
 	"go.opentelemetry.io/otel/propagation"
 	"go.opentelemetry.io/otel/sdk/resource"
@@ -49,7 +50,11 @@ func main() {
 
 	// fiber app
 	app := fiber.New()
-	app.Use(otelfiber.Middleware())
+	app.Use(otelfiber.Middleware(otelfiber.WithCustomAttributes(func(c *fiber.Ctx) []attribute.KeyValue {
+		return []attribute.KeyValue{
+			attribute.String("amazon.trace.id", string(c.Request().Header.Peek("X-Amzn-Trace-Id"))),
+		}
+	})))
 
 	todoHandler.SetRoutes(app)
 
