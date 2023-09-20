@@ -9,6 +9,11 @@ services:
       - "14268:14268"
     environment:
       - LOG_LEVEL=debug
+      - SPAN_STORAGE_TYPE=elasticsearch
+      - ES_SERVER_URLS=https://demo-f85114.es.europe-west3.gcp.cloud.es.io
+      - ES_USERNAME=elastic
+      - ES_PASSWORD=uvTjLJvW1muyHo3LZa4mE9Ii
+      - ES_VERSION=7
     networks:
       - jaeger-example
   hotrod:
