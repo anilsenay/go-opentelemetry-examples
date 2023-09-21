@@ -16,7 +16,7 @@ There is 6 different example cases in seperated branches:
 | [OpenTelemetry + Jaeger + Elasticsearch](#opentelemetry--jaeger--elasticsearch) | Using Elasticsearch as Jaeger span storage |
 | [OpenTelemetry + Elasticsearch APM](#opentelemetry--elasticsearch-apm) | Basic example of using [Elasticsearch APM](https://www.elastic.co/observability/application-performance-monitoring) instead of Jaeger |
 | [(METRICS) OpenTelemetry + Jaeger + Prometheus Go Client]([#metrics---opentelemetry--jaeger--prometheus-go-client) | Basic metric example by using OpenTelemetry + Jaeger + Prometheus Go Client |
-| [OpenTelemetry + Jaeger + Distributed Services + AWS Trace ID (X-Amzn-Trace-Id)]([#opentelemetry--jaeger--distributed-services--x-amzn-trace-id)) | Example of passing the received `X-Amzn-Trace-Id` to routes |
+| [OpenTelemetry + Jaeger + Distributed Services + AWS Trace ID (X-Amzn-Trace-Id)]([#opentelemetry--jaeger--distributed-services--x-amzn-trace-id) | Example of passing the received `X-Amzn-Trace-Id` to routes |
 
 ## OpenTelemetry + Jaeger
 
