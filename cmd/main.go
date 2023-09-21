@@ -25,7 +25,7 @@ import (
 )
 
 const OTEL_EXPORTER_OTLP_ENDPOINT = "https://bcab868a8913431690102bb3d3a20696.apm.europe-west3.gcp.cloud.es.io:443"
-const OTEL_EXPORTER_OTLP_HEADERS = "NhrcUcCMEzRGvcNGv8"
+const OTEL_EXPORTER_OTLP_HEADERS = "SECRET_TOKEN"
 
 func initTracer() *sdktrace.TracerProvider {
 	collectorURL := strings.Replace(OTEL_EXPORTER_OTLP_ENDPOINT, "https://", "", 1)
