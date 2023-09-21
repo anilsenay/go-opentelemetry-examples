@@ -29,7 +29,7 @@ _NOTE_: Jaeger uses inmemory storage in this case. So its not recommended for pr
 In this example tracing route is: `Handler(Fiber)` -> `Service` -> `Repository(Gorm)` -> `Database`
 Fiber and Gorm middlewares do the trick for you, but you can add a new custom trace span just like I did in `todo_service.go`. **Its important to propagate context to sub routes.**
 
-![Jaeger UI](https://github.com/anilsenay/go-opentelemetry-examples/assets/1047345/190d4eb2-6055-489c-b004-6febbd91f069)
+![Jaeger UI](https://github.com/anilsenay/go-opentelemetry-examples/assets/1047345/c5b493c5-3bc9-4469-8b5f-88a81bd2dd66)
 
 ## OpenTelemetry + Jaeger + Distributed Services
 
@@ -42,7 +42,7 @@ In this example tracing route is: `TodoService1` -> `TodoService2` -> `TodoServi
 
 As you see in image, we can see the whole trace among services while sending request to another service by passing the context
 
-![Jaeger UI](https://github.com/anilsenay/go-opentelemetry-examples/assets/1047345/26bca295-791a-45c7-925d-03218cd5e919)
+![Jaeger UI](https://github.com/anilsenay/go-opentelemetry-examples/assets/1047345/70ae7e91-7385-4671-a42d-f72ddcaa90d0)
 
 ## OpenTelemetry + Jaeger + Elasticsearch
 
@@ -61,7 +61,8 @@ For this example, I used Elastic Cloud instead of local Elastic instance.
 
 OpenTelemetry + [Elasticsearch APM](https://www.elastic.co/observability/application-performance-monitoring)
 
-![Elasticsearch APM Traces](https://github.com/anilsenay/go-opentelemetry-examples/assets/1047345/006abab3-0c48-462e-b9c8-55678a833270)
+![Elasticsearch APM Traces](https://github.com/anilsenay/go-opentelemetry-examples/assets/1047345/b6dd6fae-3ab2-4e78-8ad4-a22d555c86d2)
+
 
 ## METRICS - OpenTelemetry + Jaeger + Prometheus Go Client
 
@@ -71,7 +72,8 @@ OpenTelemetry + [Jaeger](https://www.jaegertracing.io/) + [Prometheus Go Client]
 
 _NOTE:_ This example does not include Prometheus instance for collecting metrics. It only serve metrics from /metrics endpoint in application.
 
-![Prometheus Metrics Endpoint](https://github.com/anilsenay/go-opentelemetry-examples/assets/1047345/bd669285-9981-440f-b97b-930412ea61ec)
+
+![Prometheus Metrics Endpoint](https://github.com/anilsenay/go-opentelemetry-examples/assets/1047345/3f8658ef-823a-4029-ab67-5f50d757e087)
 
 ## OpenTelemetry + Jaeger + Distributed Services + X-Amzn-Trace-Id
 
@@ -82,4 +84,5 @@ OpenTelemetry + [Jaeger](https://www.jaegertracing.io/) + Distributed Services +
 I added this example for the case if you using `X-Amzn-Trace-Id` in somewhere in your system, you can easily filter the route of request with this tag.
 
 For exampe if service received a `X-Amzn-Trace-Id` as `Root=1-67891233-abcdef012345678912345678` from AWS Load Balancer:
-![Jaeger UI](https://github.com/anilsenay/go-opentelemetry-examples/assets/1047345/b5fa6d36-9ddf-48a3-a806-187ed180371e)
+![Jaeger UI](https://github.com/anilsenay/go-opentelemetry-examples/assets/1047345/f9931ffe-625b-44ec-bed3-304d5154666c)
+
