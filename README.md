@@ -15,8 +15,8 @@ There is 6 different example cases in seperated branches:
 | [OpenTelemetry + Jaeger + Distributed Services](#opentelemetry--jaeger--distributed-services) | A distributed services example by using OpenTelemetry + [Jaeger](https://www.jaegertracing.io/)  |
 | [OpenTelemetry + Jaeger + Elasticsearch](#opentelemetry--jaeger--elasticsearch) | Using Elasticsearch as Jaeger span storage |
 | [OpenTelemetry + Elasticsearch APM](#opentelemetry--elasticsearch-apm) | Basic example of using [Elasticsearch APM](https://www.elastic.co/observability/application-performance-monitoring) instead of Jaeger |
-| [(METRICS) OpenTelemetry + Jaeger + Prometheus Go Client](#metrics-opentelemetry--jaeger--prometheus-go-client) | Basic metric example by using OpenTelemetry + Jaeger + Prometheus Go Client |
-| [OpenTelemetry + Jaeger + Distributed Services + AWS Trace ID (X-Amzn-Trace-Id)](#opentelemetry--jaeger--distributed-services--aws-trace-id-x-amzn-trace-id) | Example of passing the received `X-Amzn-Trace-Id` to routes |
+| [(METRICS) OpenTelemetry + Jaeger + Prometheus Go Client]([#metrics---opentelemetry--jaeger--prometheus-go-client) | Basic metric example by using OpenTelemetry + Jaeger + Prometheus Go Client |
+| [OpenTelemetry + Jaeger + Distributed Services + AWS Trace ID (X-Amzn-Trace-Id)]([#opentelemetry--jaeger--distributed-services--x-amzn-trace-id)) | Example of passing the received `X-Amzn-Trace-Id` to routes |
 
 ## OpenTelemetry + Jaeger
 
@@ -63,7 +63,7 @@ OpenTelemetry + [Elasticsearch APM](https://www.elastic.co/observability/applica
 
 ![Elasticsearch APM Traces](https://github.com/anilsenay/go-opentelemetry-examples/assets/1047345/006abab3-0c48-462e-b9c8-55678a833270)
 
-## (METRICS) OpenTelemetry + Jaeger + Prometheus Go Client
+## METRICS - OpenTelemetry + Jaeger + Prometheus Go Client
 
 ### Branch: [metrics](https://github.com/anilsenay/go-opentelemetry-examples/tree/metrics) 
 
@@ -73,7 +73,7 @@ _NOTE:_ This example does not include Prometheus instance for collecting metrics
 
 ![Prometheus Metrics Endpoint](https://github.com/anilsenay/go-opentelemetry-examples/assets/1047345/bd669285-9981-440f-b97b-930412ea61ec)
 
-## OpenTelemetry + Jaeger + Distributed Services + AWS Trace ID (X-Amzn-Trace-Id)
+## OpenTelemetry + Jaeger + Distributed Services + X-Amzn-Trace-Id
 
 ### Branch: [distributed-amazon-trace-id](https://github.com/anilsenay/go-opentelemetry-examples/tree/distributed-amazon-trace-id): 
 
